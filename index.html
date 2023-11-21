@@ -1,111 +1,132 @@
-<!DOCTYPE html>
-<html lang="da">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wordle Spil</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="assets/icon.png" type="image/png" />
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wordle Spil</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="assets/icon.png" type="image/png" />
+      </head>
+      <style>
+        body {
+          background-image: url('assets/baggrund.jpg');
+          background-repeat:repeat;
+          background-attachment:local;
+          background-size: cover;
+        }
+      </style>
+      
+      <body>
+        <div class="wordle-game">
+          <header class="wordle-title">Wordle Game</header>
+          <a
+            href="https://github.com/JonasAbde?tab=repositories"
+            id="github-link"
+            >Visit my GitHub profil</a>
+
+          <br />
+          <br />
+          <div class="wordle-words">
+            <div class="row">
+              <!-- række 1 -->
+              <div class="letter-box" id="letter-1"></div>
+              <div class="letter-box" id="letter-2"></div>
+              <div class="letter-box" id="letter-3"></div>
+              <div class="letter-box" id="letter-4"></div>
+              <div class="letter-box" id="letter-5"></div>
+            </div>
+
+            <div class="row">
+              <!-- række 2 -->
+              <div class="letter-box" id="letter-6"></div>
+              <div class="letter-box" id="letter-7"></div>
+              <div class="letter-box" id="letter-8"></div>
+              <div class="letter-box" id="letter-9"></div>
+              <div class="letter-box" id="letter-10"></div>
+            </div>
+
+            <div class="row">
+              <!-- række 3 -->
+              <div class="letter-box" id="letter-11"></div>
+              <div class="letter-box" id="letter-12"></div>
+              <div class="letter-box" id="letter-13"></div>
+              <div class="letter-box" id="letter-14"></div>
+              <div class="letter-box" id="letter-15"></div>
+            </div>
+
+            <div class="row">
+              <!-- række 4 -->
+              <div class="letter-box" id="letter-16"></div>
+              <div class="letter-box" id="letter-17"></div>
+              <div class="letter-box" id="letter-18"></div>
+              <div class="letter-box" id="letter-19"></div>
+              <div class="letter-box" id="letter-20"></div>
+            </div>
+
+            <div class="row">
+              <!-- række 5 -->
+              <div class="letter-box" id="letter-21"></div>
+              <div class="letter-box" id="letter-22"></div>
+              <div class="letter-box" id="letter-23"></div>
+              <div class="letter-box" id="letter-24"></div>
+              <div class="letter-box" id="letter-25"></div>
+            </div>
+
+            <div class="row">
+              <!-- række 6 -->
+              <div class="letter-box" id="letter-26"></div>
+              <div class="letter-box" id="letter-27"></div>
+              <div class="letter-box" id="letter-28"></div>
+              <div class="letter-box" id="letter-29"></div>
+              <div class="letter-box" id="letter-30"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="keyboard">
+          <!-- tastatur -->
+          <div class="kb-line">
+            <!-- række 1 for tastatur -->
+            <button class="key-button" data-key="q">Q</button>
+            <button class="key-button" data-key="w">W</button>
+            <button class="key-button" data-key="e">E</button>
+            <button class="key-button" data-key="r">R</button>
+            <button class="key-button" data-key="t">T</button>
+            <button class="key-button" data-key="y">Y</button>
+            <button class="key-button" data-key="u">U</button>
+            <button class="key-button" data-key="i">I</button>
+            <button class="key-button" data-key="o">O</button>
+            <button class="key-button" data-key="p">P</button>
+          </div>
+
+          <div class="kb-line">
+            <!-- række 2 for tastatur -->
+            <button class="key-button" data-key="a">A</button>
+            <button class="key-button" data-key="s">S</button>
+            <button class="key-button" data-key="d">D</button>
+            <button class="key-button" data-key="f">F</button>
+            <button class="key-button" data-key="g">G</button>
+            <button class="key-button" data-key="h">H</button>
+            <button class="key-button" data-key="j">J</button>
+            <button class="key-button" data-key="k">K</button>
+            <button class="key-button" data-key="l">L</button>
+          </div>
+
+          <div class="kb-line">
+            <!-- række 3 for tastatur -->
+            <button class="key-button" data-key="Enter">ENTER</button>
+            <button class="key-button" data-key="z">Z</button>
+            <button class="key-button" data-key="x">X</button>
+            <button class="key-button" data-key="c">C</button>
+            <button class="key-button" data-key="v">V</button>
+            <button class="key-button" data-key="b">B</button>
+            <button class="key-button" data-key="n">N</button>
+            <button class="key-button" data-key="m">M</button>
+            <button class="key-button" data-key="Backspace">←</button>
+          </div>
+        </div>
+        <script type="text/javascript" src="wordlespil.js"></script>
+      </body>
+    </html>
   </head>
-
-  <body>
-    <div class="wordle-game">
-      <header class="wordle-title">Wordle Spil</header>
-      <hr />
-
-      <a href="https://github.com/JonasAbde?tab=repositories" id="github-link">
-        <h1>Besøg min GitHub profil for flere projekter</h1>
-        <br />
-        <br />
-      </a>
-
-      <!-- Container for spillebrættet -->
-      <div id="spillebræt" class="wordle-words">
-        <div id="current-guess"></div>
-
-        <div class="row">
-          <div class="ord-box" id="ord-1"></div>
-          <div class="ord-box" id="ord-2"></div>
-          <div class="ord-box" id="ord-3"></div>
-          <div class="ord-box" id="ord-4"></div>
-          <div class="ord-box" id="ord-5"></div>
-        </div>
-
-        <div class="row">
-          <div class="ord-box" id="ord-6"></div>
-          <div class="ord-box" id="ord-7"></div>
-          <div class="ord-box" id="ord-8"></div>
-          <div class="ord-box" id="ord-9"></div>
-          <div class="ord-box" id="ord-10"></div>
-        </div>
-
-        <div class="row">
-          <div class="ord-box" id="ord-11"></div>
-          <div class="ord-box" id="ord-12"></div>
-          <div class="ord-box" id="ord-13"></div>
-          <div class="ord-box" id="ord-14"></div>
-          <div class="ord-box" id="ord-15"></div>
-        </div>
-
-        <div class="row">
-          <div class="ord-box" id="ord-16"></div>
-          <div class="ord-box" id="ord-17"></div>
-          <div class="ord-box" id="ord-18"></div>
-          <div class="ord-box" id="ord-19"></div>
-          <div class="ord-box" id="ord-20"></div>
-        </div>
-
-        <div class="row">
-          <div class="ord-box" id="ord-21"></div>
-          <div class="ord-box" id="ord-22"></div>
-          <div class="ord-box" id="ord-23"></div>
-          <div class="ord-box" id="ord-24"></div>
-          <div class="ord-box" id="ord-25"></div>
-        </div>
-      </div>
-
-      <div id="tastatur-cont">
-        <div class="første-row">
-          <button class="tastatur" id="Q">Q</button>
-          <button class="tastatur" id="W">W</button>
-          <button class="tastatur" id="E">E</button>
-          <button class="tastatur" id="R">R</button>
-          <button class="tastatur" id="T">T</button>
-          <button class="tastatur" id="Y">Y</button>
-          <button class="tastatur" id="U">U</button>
-          <button class="tastatur" id="I">I</button>
-          <button class="tastatur" id="O">O</button>
-          <button class="tastatur" id="P">P</button>
-        </div>
-        <div class="anden-row">
-          <button class="tastatur" id="A">A</button>
-          <button class="tastatur" id="S">S</button>
-          <button class="tastatur" id="D">D</button>
-          <button class="tastatur" id="F">F</button>
-          <button class="tastatur" id="G">G</button>
-          <button class="tastatur" id="H">H</button>
-          <button class="tastatur" id="J">J</button>
-          <button class="tastatur" id="K">K</button>
-          <button class="tastatur" id="L">L</button>
-        </div>
-        <div class="trejde-row">
-          <button class="tastatur" id="Del">Del</button>
-          <button class="tastatur" id="Æ">Æ</button>
-          <button class="tastatur" id="Ø">Ø</button>
-          <button class="tastatur" id="Å">Å</button>
-          <button class="tastatur" id="Z">Z</button>
-          <button class="tastatur" id="X">X</button>
-          <button class="tastatur" id="C">C</button>
-          <button class="tastatur" id="V">V</button>
-          <button class="tastatur" id="B">B</button>
-          <button class="tastatur" id="N">N</button>
-          <button class="tastatur" id="M">M</button>
-        </div>
-      </div>
-      <ul id="guess-list"></ul>
-    </div>
-
-    <!-- Include the script for the game -->
-    <script type="module" src="wordlespil.js"></script>
-  </body>
 </html>

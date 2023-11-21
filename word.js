@@ -1,5 +1,4 @@
-// Select a random word from the array
-export const words = [
+export const wordlewords = [ // 5 bogstaver i hvert ord.
   "aahed",
   "aalii",
   "aargh",
