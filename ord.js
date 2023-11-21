@@ -1,4 +1,4 @@
-// Select a random word from the array
+// vælger et tilfældigt ord fra listen
 export const words = [
   "aahed",
   "aalii",
