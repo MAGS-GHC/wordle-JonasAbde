@@ -17,6 +17,15 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+#guess-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.letter-box {
+  display: inline-block;
+}
+
 .wordle-title {
   font-size: 24px;
   font-weight: bold;

@@ -1,65 +1,92 @@
+// Importerer et array med ord fra en ekstern fil med navnet "ord.js".
 import { words } from "./ord.js";
 
-let valgtOrd;
+// Initialiserer to tomme arrays og en variabel til at holde styr på den aktuelle række.
+let valgteOrd = [];
 let gættedeBogstaver = [];
+let aktuelRække = 1;
 
-// Vælg boksen hvor ordet vises
-let ordBoks = document.getElementById("current-guess");
+// Funktion til at generere et tilfældigt ord fra det importerede array.
+function getRandomWord(words) {
+  return words[Math.floor(Math.random() * words.length)];
+}
 
-// Skjul boksen
-ordBoks.style.display = "none";
+// Funktion til at opdatere en HTML-boks med specifik id, tekstindhold, og CSS-klasse.
+function getAndUpdateBox(id, textContent, className, removeClass = false) {
+  const box = document.getElementById(id);
+  if (box) {
+    box.textContent = textContent;
+    if (removeClass) {
+      box.classList.remove(className);
+    } else {
+      box.classList.add(className);
+    }
+  }
+}
 
-// Funktion til at håndtere et gættet bogstav
+// Funktion til at håndtere brugerens gæt på et bogstav.
 function håndterGæt(bogstav) {
   bogstav = bogstav.toUpperCase();
-
-  if (gættedeBogstaver.includes(bogstav)) {
-    alert("Du har allerede gættet dette bogstav!");
-    return;
-  }
-
+  // Opdaterer visningen med det gættede bogstav i den aktuelle række.
+  getAndUpdateBox(
+    `ord-${aktuelRække}-${gættedeBogstaver.length + 1}`,
+    bogstav,
+    "filled-box"
+  );
   gættedeBogstaver.push(bogstav);
 
-  if (valgtOrd.includes(bogstav)) {
-    opdaterOrdVisning();
+  // Tjekker om brugeren har gættet det rigtige ord efter fem bogstaver.
+  if (gættedeBogstaver.length === 5) {
+    const gættetOrd = gættedeBogstaver.join("").toUpperCase();
+    if (words.map((word) => word.toUpperCase()).includes(gættetOrd)) {
+      tjekGæt(); // Brugeren har gættet ordet korrekt.
+    } else {
+      // Brugeren har gættet forkert ord.
+      alert("Desværre, det var ikke det rigtige ord. Prøv igen!");
+      gættedeBogstaver = [];
+      rydOrdBokse();
+    }
   }
-
-  tjekGæt();
-
-  const listItem = document.createElement("li");
-  listItem.textContent = bogstav;
-  document.getElementById("guess-list").appendChild(listItem);
 }
 
-// Funktion til at tjekke om det gættede ord er korrekt
+// Funktion til at tjekke, om brugeren har gættet alle fem ord i den aktuelle række.
 function tjekGæt() {
-  const gættetOrd = gættedeBogstaver.join("");
-  if (gættetOrd === valgtOrd) {
-    alert("Tillykke! Du gættede ordet!");
-    gættedeBogstaver.length = 0;
-    visOrdPåBræt();
+  alert("Tillykke! Du gættede ordet!");
+  aktuelRække++;
+
+  // Tjekker om spillet er gennemført efter fem rækker.
+  if (aktuelRække > 5) {
+    alert("Tillykke! Du har gennemført spillet!");
+    aktuelRække = 1; // Nulstiller rækken for at starte forfra.
+  } else {
+    alert(`Du er nu på række ${aktuelRække}!`);
+    rydOrdBokse();
+    gættedeBogstaver = [];
   }
 }
 
-// Funktion til at opdatere ordvisningen baseret på gættede bogstaver
-function opdaterOrdVisning() {
-  const ordKarakterer = valgtOrd.split("");
+// Funktion til at rydde boksene med gættede bogstaver i den aktuelle række.
+function rydOrdBokse() {
+  for (let i = 1; i <= 5; i++) {
+    getAndUpdateBox(`ord-${aktuelRække}-${i}`, "", "filled-box", true);
+  }
+}
 
+// Funktion til at opdatere visningen af det valgte ord med gættede bogstaver.
+function opdaterOrdVisning() {
+  const ordKarakterer = valgteOrd[aktuelRække - 1].split("");
   ordKarakterer.forEach((karakter, index) => {
     if (gættedeBogstaver.includes(karakter)) {
-      const boks = document.getElementById(`ord-${index + 0}`);
-      boks.textContent = karakter;
-      boks.classList.add("filled-box");
+      getAndUpdateBox(
+        `ord-${aktuelRække}-${index + 1}`,
+        karakter,
+        "filled-box"
+      );
     }
   });
 }
 
-// Funktion til at vise det valgte ord på spillebrættet
-function visOrdPåBræt() {
-  // Gør ingenting
-}
-
-// Tilføj event listeners til tastaturknapper
+// Funktion til at tilføje event listeners på tastaturet for at håndtere brugerens input.
 function tilføjTastaturEventListeners() {
   window.addEventListener("keydown", (event) => {
     const bogstav = event.key.toUpperCase();
@@ -67,23 +94,14 @@ function tilføjTastaturEventListeners() {
   });
 }
 
-// Initialiser spillet
+// Funktion til at initialisere spillet ved indlæsning af DOM.
 function initialiserSpil() {
-  valgtOrd = words[Math.floor(Math.random() * words.length)];
-  visOrdPåBræt();
-
-  const observer = new MutationObserver((mutationsList, observer) => {
-    for (let mutation of mutationsList) {
-      if (mutation.addedNodes.length) {
-        opdaterOrdVisning();
-      }
-    }
-  });
-
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  tilføjTastaturEventListeners();
+  // Genererer fem tilfældige ord ved starten af spillet.
+  for (let i = 0; i < 5; i++) {
+    valgteOrd[i] = getRandomWord(words).toUpperCase();
+  }
+  tilføjTastaturEventListeners(); // Tilføjer event listeners til tastaturet.
 }
 
-// Kald initialiserSpil funktionen når siden er indlæst
+// Lytter efter DOMContentLoaded-eventet og starter spillet ved indlæsning af DOM.
 document.addEventListener("DOMContentLoaded", initialiserSpil);

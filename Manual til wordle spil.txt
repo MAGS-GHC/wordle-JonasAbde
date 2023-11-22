@@ -1,0 +1,12 @@
+Manual til Gæt Ordet Spillet
+Velkommen til Gæt Ordet spillet! Dette spil udfordrer dig til at gætte fem ord i hver række korrekt for at fuldføre spillet. Her er en trin-for-trin vejledning om, hvordan du spiller:
+
+Gæt Bogstaver: Brug tastaturet til at gætte bogstaver i det skjulte ord. Hver række har fem bokse, og dit mål er at gætte det rigtige ord ved at indtaste fem bogstaver.
+
+Se Resultater: Efter hvert bogstavsgæt vil resultatet vises i boksene. De gættede bogstaver, der er korrekte, vil blive vist, og du kan følge med i din fremgang.
+
+Vind Spillet: Når du har gættet alle fem ord i en række korrekt, går du videre til næste række. Gennemfør alle fem rækker for at vinde spillet.
+
+Nulstil Spillet: Hvis du laver en fejl, får du besked om det, og boksene nulstilles for den aktuelle række. Du kan prøve igen og fortsætte med at gætte.
+
+Gennemfør Spillet: Efter fem rækker bliver du informeret om, at du har gennemført spillet. Du kan vælge at spille igen ved at genindlæse siden.
