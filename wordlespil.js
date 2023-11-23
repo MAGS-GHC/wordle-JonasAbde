@@ -1,3 +1,5 @@
+//console.loggen på det hele, få at debuge og finde fejlen okring farverne på row og column
+
 // Importerer et array med ord fra en ekstern fil med navnet "ord.js".
 import { words } from "./ord.js";
 
