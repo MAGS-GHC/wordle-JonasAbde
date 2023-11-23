@@ -1,4 +1,4 @@
-import { words } from "./ord.js";
+import { words } from "./ord.js"; // punkt 1 
 
 document.addEventListener("DOMContentLoaded", () => {
   let valgteOrd = [];
@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let aktuelRække = 1;
   let hints = [];
 
-  function getRandomWord(words) {
+  function getRandomWord(words) { // punkt 2
     return words[Math.floor(Math.random() * words.length)];
   }
 
-  function getAndUpdateBox(
+  function getAndUpdateBox( // punkt 3
     id,
     textContent,
     className,
@@ -33,12 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function getBoxColorClass(hint) {
+  function getBoxColorClass(hint) { 
     const colorMap = { grå: "grå", gul: "gul", grøn: "grøn" };
     return colorMap[hint] ? colorMap[hint] : "";
   }
 
-  function håndterSlet() {
+  function håndterSlet() { // punkt 4
     if (gættedeBogstaver.length > 0) {
       const sidsteBogstav = gættedeBogstaver.pop();
       const sidsteHint = hints.pop();
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function håndterGæt(bogstav) {
+  function håndterGæt(bogstav) { // punkt 5
     const boxId = `ord-${aktuelRække}-${gættedeBogstaver.length + 1}`;
     const korrektOrd = valgteOrd[aktuelRække - 1].toUpperCase();
     const bogstavIndex = gættedeBogstaver.length;
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateHintBoxes();
   }
 
-  function updateHintBoxes() {
+  function updateHintBoxes() { // punkt 6
     Array.from({ length: 3 }).forEach((_, i) => {
       const hintIndex = i;
       const hintClassName = hints[hintIndex]?.toLowerCase() || "";
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function tjekGæt() {
+  function tjekGæt() { // punkt 7
     const korrektOrd = valgteOrd[aktuelRække - 1].toUpperCase();
     const gættetOrd = gættedeBogstaver.join("").toUpperCase();
 
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function tilføjTastaturEventListeners() {
+  function tilføjTastaturEventListeners() { // punkt 8
     window.addEventListener("keydown", (event) => {
       if (/^[a-zA-Z]$/.test(event.key)) {
         const bogstav = event.key.toUpperCase();
