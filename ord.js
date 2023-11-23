@@ -1,3 +1,4 @@
+// færdig og klar til brug 
 // vælger et tilfældigt ord fra listen
 export const words = [
   "aahed",

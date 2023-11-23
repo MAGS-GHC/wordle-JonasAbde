@@ -1,3 +1,5 @@
+klar til brug
+
 Manual til Gæt Ordet Spillet
 Velkommen til Gæt Ordet spillet! Dette spil udfordrer dig til at gætte fem ord i hver række korrekt for at fuldføre spillet. Her er en trin-for-trin vejledning om, hvordan du spiller:
 
